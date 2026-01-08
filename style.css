@@ -23,12 +23,21 @@ body {
 
 /* BANNERS */
 .banner {
-  min-height: 100vh;
-  padding: 4rem 1.5rem;
+  padding: 4rem 0rem;        /* top/bottom 4rem, left/right 1rem */
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;       /* center images horizontally */
 }
+
+/* Mobile / tablet adjustments */
+@media (max-width: 768px) {
+  .banner {
+    padding: 2rem 0.5rem;    /* smaller top/bottom and sides */
+  }
+}
+
+
 
 /* BANNER HEADINGS */
 .banner h1,
@@ -114,9 +123,9 @@ footer {
 
 /* GREETING BANNER IMAGE */
 .greeting-img {
-  width: 80%;       /* responsive */
+  width: 100%;       /* responsive */
   height: auto;
-  margin: 0 auto 2rem; /* center and space below */
+  margin: 0 auto 1rem; /* center and space below */
   display: block;
   border-radius: 12px; /* optional: rounded edges */
 }
@@ -276,27 +285,29 @@ img {
   gap: 3rem;
   flex-wrap: wrap;
   margin-top: 2rem;
-  padding-left: 8rem;
 }
 
 .event-item {
   display: flex;
-  align-items: stretch;
+  align-items: stretch; /* ensures icon matches .event-text height */
   gap: 1rem;
 }
 
 .event-icon {
   display: block;
-  height: auto;
-  width: auto;
-  flex-shrink: 0;
+  flex-shrink: 1;        /* allow shrinking on small screens */
+  height: auto;           /* let height adjust */
+  width: auto;            /* preserve aspect ratio */
+  max-height: 1em;        /* temporary base, will scale via parent */
 }
 
-/* Make the icon stretch to match the text height */
 .event-item img {
-  height: 100%;
+  height: auto;
+  width: auto;
+  max-height: 100%;       /* fill parent's height but shrink if needed */
   object-fit: contain;
 }
+
 
 .event-text {
   display: flex;
@@ -310,17 +321,15 @@ img {
 }
 
 .event-text .line1 {
-  font-size: clamp(18px, 1.5vw, 25px);
   margin: 0.1rem 0;
 }
 
 .event-text .line2 {
-  font-size: clamp(35px, 4vw, 50px);
   color: #f29a00;
   margin: 0.1rem 0;
 }
 
 .event-text .line3 {
-  font-size: clamp(28px, 3vw, 35px);
+  font-size: 1.5vw;
   margin: 0.1rem 0;
 }

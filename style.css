@@ -1,0 +1,326 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Georgia", serif;
+}
+
+/* BODY WITH FULL-SITE BACKGROUND IMAGE */
+body {
+  background: url("assets/bg10.png") no-repeat center center fixed;
+  background-size: cover;
+  color: #000; /* text color */
+  text-align: center;
+}
+
+/* GLOBAL CONTAINER */
+.container {
+  width: 90%;          /* nearly full width on small screens */
+  max-width: 1200px;   /* prevents stretching on large screens */
+  margin: 0 auto;      /* center horizontally */
+}
+
+/* BANNERS */
+.banner {
+  min-height: 100vh;
+  padding: 4rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* BANNER HEADINGS */
+.banner h1,
+.banner h2 {
+  font-size: clamp(24px, 5vw, 48px); /* dynamic scaling */
+  margin-bottom: 1rem;
+}
+
+/* HIGHLIGHT TEXT */
+.highlight {
+  font-size: clamp(14px, 2vw, 20px);
+  max-width: 600px;
+  margin: auto;
+}
+
+/* SECTIONS */
+.section {
+  padding: 4rem 1.5rem;
+}
+
+.section h2 {
+  font-size: clamp(20px, 4vw, 36px);
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: clamp(14px, 2.5vw, 18px);
+  margin-bottom: 2rem;
+  font-style: italic;
+}
+
+/* EVENT DETAILS */
+.details-grid {
+  display: grid;
+  gap: 2rem;
+  max-width: 600px;
+  margin: auto;
+}
+
+.details-grid h4 {
+  font-size: clamp(14px, 2vw, 18px);
+  margin-bottom: 0.3rem;
+}
+
+/* GODPARENTS */
+.names p {
+  font-size: clamp(14px, 1.8vw, 18px);
+  margin: 0.5rem 0;
+}
+
+/* DRESSCODE */
+.colors {
+  font-size: clamp(14px, 1.8vw, 18px);
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+/* RSVP BUTTON */
+.btn {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.8rem 2rem;
+  background: #333;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: clamp(14px, 1.8vw, 18px);
+}
+
+/* GIFT */
+.gift-note {
+  margin-top: 1rem;
+  font-style: italic;
+  font-size: clamp(12px, 1.5vw, 16px);
+}
+
+/* FOOTER */
+footer {
+  padding: 2rem;
+  font-size: clamp(12px, 1.5vw, 16px);
+  color: #777;
+}
+
+/* GREETING BANNER IMAGE */
+.greeting-img {
+  width: 80%;       /* responsive */
+  height: auto;
+  margin: 0 auto 2rem; /* center and space below */
+  display: block;
+  border-radius: 12px; /* optional: rounded edges */
+}
+
+/* MAKE ALL IMAGES RESPONSIVE */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* MOBILE / TABLET RESPONSIVENESS */
+@media (max-width: 768px) {
+  .container {
+    width: 95%;
+  }
+
+  .banner h1,
+  .banner h2 {
+    text-align: center; /* wrap nicely on small screens */
+  }
+
+  .greeting-img {
+    max-width: 80%;
+  }
+
+  .details-grid {
+    grid-template-columns: 1fr; /* stack event details on small screens */
+  }
+
+  .event-items-container {
+    padding-left: 2rem; /* reduce left padding on small screens */
+    gap: 2rem;          /* reduce gap between items */
+  }
+}
+
+/* ULTRA-LARGE SCREENS */
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1400px;
+  }
+}
+
+/* ==========================
+   RSVP FORM STYLES
+========================== */
+.rsvp-form-container {
+  max-width: 640px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+#rsvpForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#rsvpForm input,
+#rsvpForm textarea,
+#rsvpForm button[type="submit"],
+.attending-btn {
+  font-size: clamp(14px, 2vw, 18px); /* dynamic scaling for all form text */
+}
+
+#rsvpForm textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+#rsvpForm label {
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+/* Submit RSVP button ONLY */
+#rsvpForm button[type="submit"] {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#rsvpForm button[type="submit"]:hover {
+  background-color: #555;
+}
+
+/* Confirmation message */
+.confirmation-message {
+  margin-top: 1rem;
+  font-style: italic;
+  color: green;
+}
+
+/* Yes/No attending buttons */
+.attending-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.attending-btn {
+  flex: 1;
+  padding: 0.8rem 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.1s;
+  background-color: inherit;
+  color: inherit;
+}
+
+/* Hover effect */
+.attending-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Specific colors */
+.attending-btn.yes {
+  background-color: #d8f5d8;
+  color: #000;
+}
+
+.attending-btn.no {
+  background-color: #f5d8d8;
+  color: #000;
+}
+
+/* Selected button state */
+.attending-btn.selected {
+  border: 2px solid #333;
+  box-shadow: 0 0 8px rgba(0,0,0,0.3);
+  font-weight: bold;
+  transition: background-color 0.2s, box-shadow 0.2s, transform 0.1s;
+}
+
+.attending-btn.yes.selected {
+  background-color: #bff0bf;
+}
+
+.attending-btn.no.selected {
+  background-color: #f0bfbf;
+}
+
+/* ==========================
+   EVENT ITEMS
+========================== */
+.event-items-container {
+  display: flex;
+  justify-content: left;
+  align-items: flex-start;
+  gap: 3rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  padding-left: 8rem;
+}
+
+.event-item {
+  display: flex;
+  align-items: stretch;
+  gap: 1rem;
+}
+
+.event-icon {
+  display: block;
+  height: auto;
+  width: auto;
+  flex-shrink: 0;
+}
+
+/* Make the icon stretch to match the text height */
+.event-item img {
+  height: 100%;
+  object-fit: contain;
+}
+
+.event-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: left;
+}
+
+.event-text p {
+  margin: 0.2rem 0;
+}
+
+.event-text .line1 {
+  font-size: clamp(18px, 1.5vw, 25px);
+  margin: 0.1rem 0;
+}
+
+.event-text .line2 {
+  font-size: clamp(35px, 4vw, 50px);
+  color: #f29a00;
+  margin: 0.1rem 0;
+}
+
+.event-text .line3 {
+  font-size: clamp(28px, 3vw, 35px);
+  margin: 0.1rem 0;
+}

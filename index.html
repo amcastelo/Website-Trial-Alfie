@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Invitation</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- 1. GREETING BANNER SECTION -->
+    <section class="banner greeting">
+      <img src="assets/Opening Banner.png" alt="Greeting Image" class="greeting-img" />
+    </section>
+
+    <!-- 2. INVITATION BANNER OPENING PAGE -->
+    <section class="banner invitation">
+      <img src="assets/Invitation.png" alt="Invitation Image" class="greeting-img" />
+    </section>
+
+    <!-- 3. EVENT DETAILS -->
+    <section class="section details">
+      <img src="assets/Event Details Divider.png" alt="Greeting Image" class="greeting-img" />
+      <div class="event-items-container">
+        <div class="event-item">
+          <img src="assets/church.png" alt="Ceremony Icon" class="event-icon">
+          <div class="event-text">
+            <p class="line1">Ceremony</p>
+            <p class="line2">Holy Family Parish Church</p>
+            <p class="line3">Lancaster New City, Brgy. Alapan 2B, Imus, Cavite</p>
+          </div>
+        </div>
+
+        <div class="event-item">
+          <img src="assets/Restau.png" alt="Reception Icon" class="event-icon">
+          <div class="event-text">
+            <p class="line1">Reception</p>
+            <p class="line2">Kenny Rogers - EPZA Bacao</p>
+            <p class="line3">Antero Soriano Hwy, General Trias, Cavite</p>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- 4. GODPARENTS -->
+    <section class="section godparents">
+      <h2>Godparents</h2>
+      <p class="subtitle">
+        We are grateful for the guidance and love of our child’s godparents.
+      </p>
+
+      <div class="names">
+        <p>Mr. Juan Dela Cruz</p>
+        <p>Mrs. Maria Dela Cruz</p>
+        <p>Mr. Carlos Reyes</p>
+        <p>Mrs. Anna Reyes</p>
+      </div>
+    </section>
+
+    <!-- 5. DRESSCODE -->
+    <section class="section dresscode">
+      <h2>Dress Code</h2>
+      <p>
+        We kindly encourage our guests to wear the following colors to match the theme:
+      </p>
+      <p class="colors">
+        White • Beige • Pastel Blue
+      </p>
+    </section>
+
+    <!-- 6. GIFT GUIDE -->
+    <section class="section gift">
+      <h2>Gift Guide</h2>
+      <p>
+        Your presence is the greatest gift of all.  
+        However, if you wish to give something, we would truly appreciate:
+      </p>
+      <p class="gift-note">
+        Cash gifts or essentials for our child’s future
+      </p>
+    </section>
+    
+    <!-- 7. RSVP -->
+    <section class="section rsvp">
+      <h2>RSVP</h2>
+      <p class="subtitle">Please let us know if you can join us for this special day!</p>
+
+      <div class="rsvp-form-container">
+        <form id="rsvpForm">
+          <input type="text" name="name" placeholder="Full Name" required>
+          <input type="email" name="email" placeholder="Email" required>
+          
+          <label for="attending">Will you be attending?</label>
+          <div class="attending-buttons">
+            <button type="button" data-value="Yes" class="attending-btn yes">Yes</button>
+            <button type="button" data-value="No" class="attending-btn no">No</button>
+          </div>
+          <input type="hidden" name="attending" id="attendingInput" required>
+
+          <textarea name="notes" placeholder="Message (optional)"></textarea>
+
+          <button type="submit" class="btn">Submit RSVP</button>
+
+          <p id="confirmation" class="confirmation-message"></p>
+        </form>
+      </div>
+    </section>
+
+<script>
+const attendingButtons = document.querySelectorAll('.attending-btn');
+const attendingInput = document.getElementById('attendingInput');
+
+// Set up Yes/No button click behavior
+attendingButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    // Remove selected from all buttons
+    attendingButtons.forEach(b => b.classList.remove('selected'));
+    // Add selected to clicked button
+    btn.classList.add('selected');
+    // Set hidden input value for form submission
+    attendingInput.value = btn.dataset.value;
+  });
+});
+
+// Handle form submission
+document.getElementById('rsvpForm').addEventListener('submit', function(e){
+  e.preventDefault();
+
+  const form = this;
+  const formData = new FormData(form);
+
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxEO8g8OJs5dyLEp87PokwqXJkaJmHbNawW_c9jxfQiocNC8jSmgNzKcdu0CzIkloV97A/exec";
+
+  fetch(SCRIPT_URL, {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => {
+    if(response.ok) {
+      document.getElementById('confirmation').innerText = 
+        "Thank you! Your RSVP has been received.";
+      form.reset();
+      // Reset Yes/No selection visually
+      attendingButtons.forEach(b => b.classList.remove('selected'));
+    } else {
+      document.getElementById('confirmation').innerText = 
+        "Oops! Something went wrong. Please try again.";
+    }
+  })
+  .catch(error => {
+    console.error(error);
+    document.getElementById('confirmation').innerText = 
+      "Oops! Something went wrong. Please try again.";
+  });
+});
+</script>
+
+
+    <footer>
+      <p>With love, from the family</p>
+    </footer>
+  </divd>
+</body>
+</html>

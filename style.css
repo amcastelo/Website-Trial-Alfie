@@ -347,10 +347,10 @@ img {
 .event-text .line2 a:link,
 .event-text .line2 a:visited,
 .event-text .line2 a:active {
-  color: #f29a00;           /* main color */
+  color: #f29a00 !important;           /* main color */
   text-decoration: underline; /* optional */
 }
 
 .event-text .line2 a:hover {
-  color: #d97706;           /* hover color */
+  color: #d97706 !important;           /* hover color */
 }

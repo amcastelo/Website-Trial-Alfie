@@ -6,6 +6,10 @@
   font-family: "Georgia", serif;
 }
 
+ a, a:hover, a:focus, a:active {
+      color: inherit;
+ }
+
 /* BODY WITH FULL-SITE BACKGROUND IMAGE */
 body {
   background: url("assets/bg10.png") no-repeat center center fixed;
@@ -347,10 +351,10 @@ img {
 .event-text .line2 a:link,
 .event-text .line2 a:visited,
 .event-text .line2 a:active {
-  color: #f29a00 !important;           /* main color */
-  text-decoration: underline; /* optional */
+  color: #f29a00 !important;
+  text-decoration: underline !important;
 }
 
 .event-text .line2 a:hover {
-  color: #d97706 !important;           /* hover color */
+  color: #d97706 !important;
 }

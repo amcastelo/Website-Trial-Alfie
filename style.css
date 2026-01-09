@@ -23,7 +23,7 @@ body {
 
 /* BANNERS */
 .banner {
-  padding: 4rem 0rem;        /* top/bottom 4rem, left/right 1rem */
+  padding: 2rem 0rem;        /* top/bottom 4rem, left/right 1rem */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -36,8 +36,6 @@ body {
     padding: 2rem 0.5rem;    /* smaller top/bottom and sides */
   }
 }
-
-
 
 /* BANNER HEADINGS */
 .banner h1,
@@ -55,7 +53,7 @@ body {
 
 /* SECTIONS */
 .section {
-  padding: 4rem 1.5rem;
+  padding: 1.5rem 1rem;
 }
 
 .section h2 {
@@ -125,7 +123,7 @@ footer {
 .greeting-img {
   width: 100%;       /* responsive */
   height: auto;
-  margin: 0 auto .5rem; /* center and space below */
+  margin: 0 auto; /* center and space below */
   display: block;
   border-radius: 12px; /* optional: rounded edges */
 }
@@ -138,17 +136,18 @@ img {
 
 /* MOBILE / TABLET RESPONSIVENESS */
 @media (max-width: 768px) {
+  .greeting-img {
+    width: 100vw; /* full viewport width */
+    max-width: 100%; /* prevents overflow */  
+  }
+
   .container {
-    width: 95%;
+    width: 100%;  /* optional: container fills screen */
   }
 
   .banner h1,
   .banner h2 {
     text-align: center; /* wrap nicely on small screens */
-  }
-
-  .greeting-img {
-    max-width: 80%;
   }
 
   .details-grid {

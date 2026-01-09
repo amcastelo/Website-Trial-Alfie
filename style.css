@@ -343,11 +343,14 @@ img {
   font-size: clamp(12px, 2vw + 4px, 32px);
 }
 
-.event-text .line2 a {
-  color: #f29a00;        /* matches your line2 text color */
-  text-decoration: underline; /* optional, makes it look like a link */
+.event-text .line2 a,
+.event-text .line2 a:link,
+.event-text .line2 a:visited,
+.event-text .line2 a:active {
+  color: #f29a00;           /* main color */
+  text-decoration: underline; /* optional */
 }
 
 .event-text .line2 a:hover {
-  color: #d97706;       /* slightly darker on hover */
+  color: #d97706;           /* hover color */
 }

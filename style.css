@@ -16,7 +16,7 @@ body {
 
 /* GLOBAL CONTAINER */
 .container {
-  width: 90%;          /* nearly full width on small screens */
+  width: 95%;          /* nearly full width on small screens */
   max-width: 1200px;   /* prevents stretching on large screens */
   margin: 0 auto;      /* center horizontally */
 }
@@ -125,7 +125,7 @@ footer {
 .greeting-img {
   width: 100%;       /* responsive */
   height: auto;
-  margin: 0 auto 1rem; /* center and space below */
+  margin: 0 auto .5rem; /* center and space below */
   display: block;
   border-radius: 12px; /* optional: rounded edges */
 }
@@ -289,25 +289,15 @@ img {
 
 .event-item {
   display: flex;
-  align-items: stretch; /* ensures icon matches .event-text height */
+  align-items: center; /* ensures icon matches .event-text height */
   gap: 1rem;
 }
 
 .event-icon {
-  display: block;
-  flex-shrink: 1;        /* allow shrinking on small screens */
-  height: auto;           /* let height adjust */
-  width: auto;            /* preserve aspect ratio */
-  max-height: 1em;        /* temporary base, will scale via parent */
-}
-
-.event-item img {
+  width: clamp(60px, 10vw, 500px); /* responsive icon size */
   height: auto;
-  width: auto;
-  max-height: 100%;       /* fill parent's height but shrink if needed */
-  object-fit: contain;
+  flex-shrink: 0;                 /* prevent shrinking */
 }
-
 
 .event-text {
   display: flex;
@@ -322,14 +312,19 @@ img {
 
 .event-text .line1 {
   margin: 0.1rem 0;
+  font-style: normal;
+  font-size: clamp(12px, 2vw + 4px, 24px);
 }
 
 .event-text .line2 {
   color: #f29a00;
   margin: 0.1rem 0;
+  font-style: normal;
+  font-size: clamp(12px, 2vw + 4px, 32px);
 }
 
 .event-text .line3 {
-  font-size: 1.5vw;
   margin: 0.1rem 0;
+  font-style: normal;
+  font-size: clamp(12px, 2vw + 4px, 32px);
 }

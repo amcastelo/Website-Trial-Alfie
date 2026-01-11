@@ -43,7 +43,7 @@
             <p class="line1">Reception</p>
             <p class="line2">
               <a href="https://maps.app.goo.gl/SFvWJHg8hpoMytSh9" target="_blank">
-                Kenny Rogers - EPZA Bacao
+                Kenny Rogers 2nd Floor - EPZA Bacao
               </a>              
             </p>
             <p class="line3">Antero Soriano Hwy, General Trias, Cavite</p>
@@ -101,58 +101,74 @@
     </section>
 
 <script>
-const attendingButtons = document.querySelectorAll('.attending-btn');
-const attendingInput = document.getElementById('attendingInput');
+document.addEventListener('DOMContentLoaded', () => {
 
-// Set up Yes/No button click behavior
-attendingButtons.forEach(btn => {
-  btn.addEventListener('click', () => {
-    // Remove selected from all buttons
-    attendingButtons.forEach(b => b.classList.remove('selected'));
-    // Add selected to clicked button
-    btn.classList.add('selected');
-    // Set hidden input value for form submission
-    attendingInput.value = btn.dataset.value;
-  });
-});
+  const attendingButtons = document.querySelectorAll('.attending-btn');
+  const attendingInput = document.getElementById('attendingInput');
+  const form = document.getElementById('rsvpForm');
+  const dialog = document.getElementById('thankYouDialog');
+  const closeBtn = document.getElementById('closeThankYou');
+  const confirmationText = document.getElementById('confirmation');
 
-// Handle form submission
-document.getElementById('rsvpForm').addEventListener('submit', function(e){
-  e.preventDefault();
-
-  const form = this;
-  const formData = new FormData(form);
-
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxEO8g8OJs5dyLEp87PokwqXJkaJmHbNawW_c9jxfQiocNC8jSmgNzKcdu0CzIkloV97A/exec";
-
-  fetch(SCRIPT_URL, {
-    method: 'POST',
-    body: formData
-  })
-  .then(response => {
-    if(response.ok) {
-      document.getElementById('confirmation').innerText = 
-        "Thank you! Your RSVP has been received.";
-      form.reset();
-      // Reset Yes/No selection visually
+  // Yes / No button behavior
+  attendingButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
       attendingButtons.forEach(b => b.classList.remove('selected'));
-    } else {
-      document.getElementById('confirmation').innerText = 
-        "Oops! Something went wrong. Please try again.";
-    }
-  })
-  .catch(error => {
-    console.error(error);
-    document.getElementById('confirmation').innerText = 
-      "Oops! Something went wrong. Please try again.";
+      btn.classList.add('selected');
+      attendingInput.value = btn.dataset.value;
+    });
   });
+
+  // Handle form submission
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+
+    const formData = new FormData(form);
+
+    // ✅ Show thank-you dialog immediately
+    dialog.classList.remove('hidden');
+
+    // ✅ Keep confirmation text in the form
+    confirmationText.innerText = "Thank you! Your RSVP has been received.";
+
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxEO8g8OJs5dyLEp87PokwqXJkaJmHbNawW_c9jxfQiocNC8jSmgNzKcdu0CzIkloV97A/exec";
+
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: formData
+    })
+    .then(() => {
+      form.reset();
+      attendingButtons.forEach(b => b.classList.remove('selected'));
+    })
+    .catch(err => {
+      console.error(err);
+      confirmationText.innerText =
+        "Something went wrong, but your response may still have been recorded.";
+    });
+  });
+
+  // Close dialog button
+  closeBtn.addEventListener('click', () => {
+    dialog.classList.add('hidden');
+  });
+
 });
 </script>
+
 
 
     <footer>
       <p>With love, from the family</p>
     </footer>
   </divd>
+
+  <div id="thankYouDialog" class="thank-you-dialog hidden">
+    <div class="thank-you-box">
+      <h3>Thank you! 💙</h3>
+      <p>Your RSVP has been recorded.</p>
+      <button id="closeThankYou">Close</button>
+    </div>
+</div>
 </body>
 </html>

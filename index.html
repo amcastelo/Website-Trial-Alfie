@@ -134,17 +134,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxEO8g8OJs5dyLEp87PokwqXJkaJmHbNawW_c9jxfQiocNC8jSmgNzKcdu0CzIkloV97A/exec";
 
     fetch(SCRIPT_URL, {
-      method: 'POST',
+      method: "POST",
+      mode: "no-cors",
       body: formData
     })
     .then(() => {
+      // treat as success
       form.reset();
       attendingButtons.forEach(b => b.classList.remove('selected'));
+      confirmationText.innerText = "Thank you! Your RSVP has been received.";
     })
     .catch(err => {
       console.error(err);
-      confirmationText.innerText =
-        "Something went wrong, but your response may still have been recorded.";
+      confirmationText.innerText = "Network error. Please try again.";
     });
   });
 
